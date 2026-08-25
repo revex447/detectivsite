@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детективное Агентство: Дело №104</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main-menu" class="container">
+        <header class="menu-header">
+            <div class="badge">Совершенно секретно</div>
+            <h1>ЧАСТНЫЙ ДЕТЕКТИВ</h1>
+            <p class="subtitle">Интерактивное нуар-расследование</p>
+        </header>
+        <div class="menu-content">
+            <p>Город погряз во лжи, коррупции и проливных дождях. На вашем столе лежит новое неопознанное дело. Готовы ли вы включить логику, собрать улики и докопаться до истины?</p>
+            <div class="rules-box">
+                <h3>📜 Правила ведения дела:</h3>
+                <ul>
+                    <li>Каждое решение меняет ход расследования.</li>
+                    <li>Внимательно изучайте локации для сбора улик.</li>
+                    <li>Одна ошибка может сорвать всё следствие.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu-actions">
+            <button class="btn btn-primary" onclick="startGame()">Начать расследование</button>
+            <button class="btn" onclick="toggleRules()">Об авторе / Инфо</button>
+        </div>
+        <div id="info-modal" class="hidden">
+            <p>Автор проекта: Ваш ник / Имя</p>
+            <p>Движок игры: HTML5, CSS3, Pure JavaScript.</p>
+        </div>
+    </div>
+    <div id="game-screen" class="container hidden">
+        <header class="game-header">
+            <div class="header-left">
+                <h1>🕵️‍♂️ Дело №104</h1>
+                <div id="location">Локация: Загрузка...</div>
+            </div>
+            <button class="btn-exit" onclick="toMainMenu()">🏠 В меню</button>
+        </header>
+        <main>
+            <div id="story-text"></div>
+            <div class="clues-box">
+                <h3>💼 Журнал улик:</h3>
+                <ul id="clues-list">
+                    <li>Пока нет улик</li>
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <div id="choices-container"></div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
