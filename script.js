@@ -1,108 +1,102 @@
-const gameState = {
-    clues: [],
-    currentStep: 'start'
-};
-const storyNodes = {
-    start: {
-        text: "Вы сидите в своем офисе. За окном идет дождь. Вдруг дверь открывается, и на пороге появляется заплаканная женщина. «Мой муж исчез», — говорит она.",
-        location: "Офис детектива",
-        choices: [
-            { text: "Выслушать ее историю", nextNode: 'listen_story' },
-            { text: "Отказать и продолжить пить кофе", nextNode: 'refuse_case' }
-        ]
+const detectiveCases = [
+    {
+        title: "🔎 Дело №1: Загадка закрытого кабинета",
+        description: "Известный коллекционер найден мертвым в своем кресле. Дверь и окна заперты изнутри. На столе стоят два бокала с вином, один пустой, второй — наполовину полон. Экспертиза показала сильнодействующий яд в обоих бокалах. Единственный подозреваемый — его компаньон, ушедший часом ранее. Как он отравил жертву, если коллекционер сам наливал вино из абсолютно новой, запечатанной бутылки в чистые бокалы?",
+        evidence: "🔍 Важная улика: На самом дне полностью пустого бокала криминалисты обнаружили микрочастицы нерастаявшего сухого льда.",
+        options: [
+            "Яд был подмешан в пробку бутылки, и вино отравилось при открытии.",
+            "Яд находился внутри кубиков льда. В пустом бокале лед растаял и отравил вино, а во втором бокале жертва просто не успела сделать глоток.",
+            "Преступник незаметно нанес быстродействующий жидкий яд на внешние края бокала."
+        ],
+        correctIndex: 1,
+        verdict: "Великолепно раскрыто! Преступник принес с собой отравленный сухой лед. Коллекционер выпивал вино не торопясь, лед постепенно таял, насыщая напиток ядом. Во втором бокале вино осталось недопитым, а лед растаять полностью не успел."
     },
-    listen_story: {
-        text: "Она рассказывает, что её муж, крупный банкир, не вернулся вчера с работы. Перед исчезновением он оставил на столе странную записку со словами 'Они знают'. Вы решаете начать поиски.",
-        location: "Офис детектива",
-        clue: "📄 Записка банкира: 'Они знают'",
-        choices: [
-            { text: "Поехать в банк, где он работал", nextNode: 'bank_office' },
-            { text: "Обыскать его домашний кабинет", nextNode: 'husband_house' }
-        ]
+    {
+        title: "🖼️ Дело №2: Ограбление в галерее «Монпарнас»",
+        description: "Из охраняемой галереи средь бела дня похитили шедевр эпохи Ренессанса. Сторож утверждает: 'Я услышал странный глухой шум в главном зале, мгновенно побежал туда, но вор успел вырубить рубильник. Я простоял в кромешной тьме около пяти минут, боясь сделать шаг, а когда наощупь отыскал выключатель у двери — рамы уже были пусты'. Следователь сразу же приказал арестовать самого сторожа. Что выдало его ложь?",
+        evidence: "🔍 Важная улика: Согласно детальному плану здания, главный распределительный щит и выключатель находятся прямо на косяке входной двери, через которую забежал сторож.",
+        options: [
+            "Преступнику физически потребовалось бы намного больше 5 минут, чтобы аккуратно вырезать холст.",
+            "Если бы сторож действительно вбежал через эту дверь, выключатель оказался бы прямо под его рукой. Ему не пришлось бы блуждать и искать его 5 минут.",
+            "В полной темноте вор ни за что не смог бы сориентироваться и найти выход из зала."
+        ],
+        correctIndex: 1,
+        verdict: "Блестящая логика! Поскольку выключатель располагался прямо у дверного проема, сторожу достаточно было просто протянуть руку в секунду входа. Пять минут блужданий — это выдумка, призванная дать сообщнику скрыться."
     },
-    refuse_case: {
-        text: "Вы вежливо отказываетесь. Женщина уходит. Вы остаетесь наедине со своим дешевым остывшим кофе. Расследование завершено, так и не начавшись.",
-        location: "Офис детектива",
-        choices: [
-            { text: "Вернуться в главное меню", nextNode: 'MAIN_MENU' }
-        ]
+    {
+        title: "📜 Дело №3: Алиби на треснувшем льду",
+        description: "Подозреваемый в крупном налёте заявляет, что у него есть железное алиби. По его словам, ровно в 14:00 (время преступления) он находился на окраине города и героически спасал собаку, провалившуюся под лед на местном озере. В подтверждение своих слов он демонстрирует глубокую свежую царапину на предплечье от металлического ошейника.",
+        evidence: "🔍 Важная улика: Метеосводка подтверждает, что в городе уже три дня держится аномально теплая весенняя погода: стабильно +8 градусов по Цельсию.",
+        options: [
+            "При постоянной температуре +8°C лед на городских водоемах полностью сходит или превращается в кашу, по которой невозможно ходить.",
+            "Собачьи ошейники не могут оставить настолько глубокие порезы на коже.",
+            "В это время суток парки обычно патрулируются, и кто-то точно заметил бы спасение."
+        ],
+        correctIndex: 0,
+        verdict: "Абсолютно верно! При стабильных +8 градусах в течение нескольких дней никакого твердого озерного льда, способного выдержать человека или стать причиной такой истории, просто не могло существовать. Алиби сфабриковано!"
     },
-    bank_office: {
-        text: "В кабинете банка идеальный порядок, но сейф приоткрыт. Внутри вы находите разорванный авиабилет в один конец.",
-        location: "Кабинет банка",
-        clue: "✈️ Разорванный авиабилет",
-        choices: [
-            { text: "Допросить секретаршу", nextNode: 'ask_secretary' },
-            { text: "Поехать осмотреть его дом", nextNode: 'husband_house' }
-        ]
-    },
-    husband_house: {
-        text: "В доме банкира вы замечаете, что в гардеробе не хватает одного большого чемодана. Похоже, побег планировался заранее.",
-        location: "Дом банкира",
-        clue: "🧳 Пустое место для чемодана",
-        choices: [
-            { text: "Сопоставить все найденные улики", nextNode: 'solve_case' }
-        ]
-    },
-    ask_secretary: {
-        text: "Секретарша начинает сильно нервничать и признается, что банкир тайно переводил миллионы на оффшорные счета.",
-        location: "Кабинет банка",
-        choices: [
-            { text: "Сопоставить все найденные улики", nextNode: 'solve_case' }
-        ]
-    },
-    solve_case: {
-        text: "Сложив пазл, вы понимаете: банкир инсценировал похищение, чтобы сбежать с деньгами. Вы перехватываете его прямо в VIP-терминале аэропорта. Дело блестяще раскрыто!",
-        location: "Аэропорт",
-        choices: [
-            { text: "Завершить расследование", nextNode: 'MAIN_MENU' }
-        ]
+    {
+        title: "💰 Дело №4: Фальшивое завещание магната",
+        description: "После кончины эксцентричного миллионера его младший сын предъявил нотариусу завещание, якобы написанное отцом от руки ровно 12 лет назад. Текст гласил, что всё имущество переходит ему. Однако старший брат, едва взглянув на пожелтевший лист бумаги, громко рассмеялся и заявил, что это грубая подделка. Как он это определил без почерковедческой экспертизы?",
+        evidence: "🔍 Важная улика: Завещание полностью написано на бумаге яркими синими чернилами современной гелевой ручки.",
+        options: [
+            "12 лет назад еще не существовало бумажных бланков такого формата.",
+            "Гелевые ручки с такими чернилами были изобретены и поступили в массовую продажу только 5 лет назад.",
+            "За 12 лет гелевые чернила должны были полностью выцветить и стать невидимыми."
+        ],
+        correctIndex: 1,
+        verdict: "Точный удар! Использование инструмента, которого еще не существовало в природе на момент предполагаемой даты написания документа — классический прокол фальсификаторов."
     }
-};
-function startGame() {
-    document.getElementById('main-menu').classList.add('hidden');
-    document.getElementById('game-screen').classList.remove('hidden');
-    gameState.clues = [];
-    updateScreen('start');
-}
-function toMainMenu() {
-    document.getElementById('game-screen').classList.add('hidden');
-    document.getElementById('main-menu').classList.remove('hidden');
-}
-function toggleRules() {
-    const modal = document.getElementById('info-modal');
-    modal.classList.toggle('hidden');
-}
-function updateScreen(nodeKey) {
-    if (nodeKey === 'MAIN_MENU') {
-        toMainMenu();
-        return;
-    }
-    const node = storyNodes[nodeKey];
-    gameState.currentStep = nodeKey;
-    document.getElementById('story-text').textContent = node.text;
-    document.getElementById('location').textContent = `Локация: ${node.location}`;
-    if (node.clue && !gameState.clues.includes(node.clue)) {
-        gameState.clues.push(node.clue);
-    }
-    const cluesList = document.getElementById('clues-list');
-    cluesList.innerHTML = '';
-    if (gameState.clues.length === 0) {
-        cluesList.innerHTML = '<li>Список пуст</li>';
-    } else {
-        gameState.clues.forEach(clue => {
-            const li = document.createElement('li');
-            li.textContent = clue;
-            cluesList.appendChild(li);
+];
+
+let solvedCount = 0;
+const solvedEl = document.getElementById('solved-count');
+const totalEl = document.getElementById('total-cases');
+const container = document.getElementById('cases-container');
+
+totalEl.textContent = detectiveCases.length;
+
+detectiveCases.forEach((caseData, cIdx) => {
+    const card = document.createElement('div');
+    card.className = 'case-card';
+    
+    card.innerHTML = `
+        <h3 class="case-title">${caseData.title}</h3>
+        <p class="case-description">${caseData.description}</p>
+        <div class="evidence-box">${caseData.evidence}</div>
+        <div class="options-list" id="choices-${cIdx}"></div>
+        <div class="verdict-box" id="verdict-${cIdx}" style="display:none;">
+            <strong>📜 Заключение следствия:</strong> <span id="verdict-text-${cIdx}"></span>
+        </div>
+    `;
+    
+    container.appendChild(card);
+    const choicesContainer = document.getElementById(`choices-${cIdx}`);
+    
+    caseData.options.forEach((optionText, oIdx) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        btn.textContent = optionText;
+        
+        btn.addEventListener('click', () => {
+            const allButtons = choicesContainer.querySelectorAll('.choice-btn');
+            allButtons.forEach(b => b.disabled = true);
+            
+            if (oIdx === caseData.correctIndex) {
+                btn.classList.add('correct-ans');
+                solvedCount++;
+                solvedEl.textContent = solvedCount;
+            } else {
+                btn.classList.add('wrong-ans');
+                allButtons[caseData.correctIndex].classList.add('correct-ans');
+            }
+            
+            const verdictBox = document.getElementById(`verdict-${cIdx}`);
+            const verdictText = document.getElementById(`verdict-text-${cIdx}`);
+            verdictText.textContent = caseData.verdict;
+            verdictBox.style.display = 'block';
         });
-    }
-    const choicesContainer = document.getElementById('choices-container');
-    choicesContainer.innerHTML = '';
-    node.choices.forEach(choice => {
-        const button = document.createElement('button');
-        button.className = 'btn';
-        button.textContent = choice.text;
-        button.onclick = () => updateScreen(choice.nextNode);
-        choicesContainer.appendChild(button);
+        
+        choicesContainer.appendChild(btn);
     });
-}
+});
