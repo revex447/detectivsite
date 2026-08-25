@@ -63,29 +63,6 @@ body {
     line-height: 1.6;
     color: #b0b0b0;
 }
-.input-box {
-    margin-bottom: 20px;
-}
-.input-box label {
-    display: block;
-    color: #cfb53b;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-}
-.input-box input {
-    width: 100%;
-    padding: 10px;
-    background: #222;
-    border: 1px solid #444;
-    color: #fff;
-    font-family: inherit;
-    font-size: 1rem;
-    border-radius: 3px;
-}
-.input-box input:focus {
-    border-color: #cfb53b;
-    outline: none;
-}
 .rules-box {
     margin-top: 25px;
     background-color: #1d1d1d;
@@ -111,6 +88,14 @@ body {
     flex-direction: column;
     gap: 12px;
 }
+#info-modal {
+    background-color: #1a1a1a;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #2a2a2a;
+    font-size: 0.85rem;
+    color: #888;
+}
 .game-header {
     background-color: #1c1c1c;
     padding: 15px 20px;
@@ -120,7 +105,7 @@ body {
     align-items: center;
 }
 .game-header h1 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #cfb53b;
 }
 #location {
